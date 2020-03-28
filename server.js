@@ -4,42 +4,28 @@ var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
 // Our packages
+var utilities = require('./libs/utilities.js');
 var game = require('./libs/game.js');
 game.test();
 
-/*
-* Log server messages
-*/
-function log(msg) {
-  console.log(msg);
-  io.emit('log', msg);
-}
-
 var players = {};
 
+// Automatically (statically) give any files requested in public
 app.use(express.static(__dirname + '/public'));
 
+// On connecting to server, give index.html to client
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+// Event: new connection
 io.on('connection', function (socket) {
-  console.log('a user connected');
-
-  log('hello there client! server speaking!');
+  utilities.log('a user connected');
 
   // create a new player and add it to our players object
   players[socket.id] = {
-    rotation: 0,
-    x: Math.floor(Math.random() * 700) + 50,
-    y: Math.floor(Math.random() * 500) + 50,
-    playerId: socket.id,
-    team: (Math.floor(Math.random() * 2) == 0) ? 'red' : 'blue'
+    name: 'fred'
   };
-  // send the players object to the new player
-  socket.emit('currentPlayers', players);
-  // update all other players of the new player
-  socket.broadcast.emit('newPlayer', players[socket.id]);
 
   socket.on('disconnect', function () {
     console.log('user disconnected');
@@ -51,6 +37,7 @@ io.on('connection', function (socket) {
   });
 });
 
+// Listen on port 8081
 server.listen(8081, function () {
   console.log(`Listening on ${server.address().port}`);
 });
