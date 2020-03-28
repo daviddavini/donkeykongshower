@@ -114,5 +114,10 @@ dist
 .yarn/build-state.yml
 .pnp.*
 
-# VS Code settings
-.vscode
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
