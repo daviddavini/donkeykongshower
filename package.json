@@ -1,0 +1,24 @@
+{
+  "name": "donkeykongshower",
+  "version": "1.0.0",
+  "description": "Project submitted for LA Hacks 2020. Multiplayer sound-off rhythm game.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daviddavini/donkeykongshower.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daviddavini/donkeykongshower/issues"
+  },
+  "homepage": "https://github.com/daviddavini/donkeykongshower#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
