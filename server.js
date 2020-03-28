@@ -3,14 +3,17 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
+// Our packages
+var game = require('./libs/game.js');
+game.test();
+
+/*
+* Log server messages
+*/
 function log(msg) {
   console.log(msg);
   io.emit('log', msg);
 }
-
-// Our packages
-var game = require('./libs/game.js');
-game.test();
 
 var players = {};
 
