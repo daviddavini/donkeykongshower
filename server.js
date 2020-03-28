@@ -3,6 +3,10 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
+// Our packages
+var game = require('./libs/game.js');
+game.test();
+
 var players = {};
 
 app.use(express.static(__dirname + '/public'));
