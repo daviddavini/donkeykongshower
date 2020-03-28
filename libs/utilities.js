@@ -1,7 +1,9 @@
 /*
 * Log server messages
 */
-exports.log = function(msg) {
+function log(io, msg) {
   console.log(msg);
   io.emit('log', msg);
-}
+};
+
+module.exports.log = log;

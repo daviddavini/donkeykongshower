@@ -1,0 +1,2 @@
+var rythm = class {
+}

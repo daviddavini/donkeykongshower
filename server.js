@@ -3,12 +3,9 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
-// Our packages
+// Our packages-
 var utilities = require('./libs/utilities.js');
-var game = require('./libs/game.js');
-game.test();
-
-var players = {};
+var rythm = require('./libs/rythm.js');
 
 // Automatically (statically) give any files requested in public
 app.use(express.static(__dirname + '/public'));
@@ -20,20 +17,10 @@ app.get('/', function (req, res) {
 
 // Event: new connection
 io.on('connection', function (socket) {
-  utilities.log('a user connected');
-
-  // create a new player and add it to our players object
-  players[socket.id] = {
-    name: 'fred'
-  };
+  utilities.log(io, 'Socket connected: ' + socket.id);
 
   socket.on('disconnect', function () {
-    console.log('user disconnected');
-
-    // remove this player from our players object
-    delete players[socket.id];
-    // emit a message to all players to remove this player
-    io.emit('disconnect', socket.id);
+    utilities.log(io, 'Socket disconnected: ' + socket.id);
   });
 });
 
