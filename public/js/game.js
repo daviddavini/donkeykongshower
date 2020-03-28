@@ -56,7 +56,7 @@ var types = [
   ];
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
@@ -68,6 +68,10 @@ function draw() {
   }
   ellipse(mouseX, mouseY, 80, 80);
   */
+
+  //print(fullscreen());
+  var scaleFactor = min(windowHeight / 400, windowWidth / 400);
+  scale(scaleFactor);
   background(255);
   textSize(12);
   stroke(0);
@@ -96,21 +100,22 @@ function draw() {
   text("*", 50, 260);
   text("**", 50, 280);
   noStroke();
-  if (mouseX>20 && mouseX<380 && mouseY>100 && mouseY<240) {
-    a = PT[floor((mouseY-100)/20)][floor((mouseX-20)/20)];
+  var s = scaleFactor;
+  if (mouseX>20*s && mouseX<380*s && mouseY>100*s && mouseY<240*s) {
+    a = PT[floor((mouseY/s-100)/20)][floor((mouseX/s-20)/20)];
     fill(colors[a]); rect(-2, 300, 404, 40); fill(0);
     textAlign(LEFT, CENTER);
-    text(labels[floor((mouseY-100)/20)][floor((mouseX-20)/20)], 20, 320);
+    text(labels[floor((mouseY/s-100)/20)][floor((mouseX/s-20)/20)], 20, 320);
     textAlign(RIGHT, CENTER);
-    text(elements[floor((mouseY-100)/20)][floor((mouseX-20)/20)], 380, 320);
+    text(elements[floor((mouseY/s-100)/20)][floor((mouseX/s-20)/20)], 380, 320);
   }
-  if (mouseX>60 && mouseX<360 && mouseY>250 && mouseY<290) {
-    a = floor((mouseY-250)/20) + 9;
+  if (mouseX>60*s && mouseX<360*s && mouseY>250*s && mouseY<290*s) {
+    a = floor((mouseY/s-250)/20) + 9;
     fill(colors[a]); rect(-2, 300, 404, 40); fill(0);
     textAlign(LEFT, CENTER);
-    text(bLabels[floor((mouseY-250)/20)][floor((mouseX-60)/20)], 20, 320);
+    text(bLabels[floor((mouseY/s-250)/20)][floor((mouseX/s-60)/20)], 20, 320);
     textAlign(RIGHT, CENTER);
-    text(bElements[floor((mouseY-250)/20)][floor((mouseX-60)/20)], 380, 320);
+    text(bElements[floor((mouseY/s-250)/20)][floor((mouseX/s-60)/20)], 380, 320);
   }
   textAlign(CENTER, CENTER);
   fill(0);
