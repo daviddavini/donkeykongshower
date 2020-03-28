@@ -24,6 +24,10 @@ function preload() {}
 function create() 
 {
   this.socket = io();
+}
+ 
+function update()
+{
   graphics.lineStyle(5, 0xFF00FF, 1.0);
   graphics.beginPath();
   graphics.moveTo(100, 100);
@@ -31,5 +35,3 @@ function create()
   graphics.closePath();
   graphics.strokePath();
 }
- 
-function update() {}
