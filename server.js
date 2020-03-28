@@ -3,6 +3,11 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
+function log(msg) {
+  console.log(msg);
+  io.emit('log', msg);
+}
+
 // Our packages
 var game = require('./libs/game.js');
 game.test();
@@ -17,6 +22,8 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (socket) {
   console.log('a user connected');
+
+  log('hello there client! server speaking!');
 
   // create a new player and add it to our players object
   players[socket.id] = {
