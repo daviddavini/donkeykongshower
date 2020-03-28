@@ -1,2 +1,2 @@
 # donkeykongshower
-Multiplayer sound-off rhythm game
+Project submitted for LA Hacks 2020. Multiplayer sound-off rhythm game.
