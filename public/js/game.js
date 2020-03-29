@@ -51,6 +51,12 @@ function changeBG() {
   let val = random(255);
   background(val);
   bruh.play();
+  sample_bar.draw();
+}
+
+function draw() {
+  var sample_bar = new musicalnotesbar(100, 100);
+  sample_bar.draw();
 }
 /*
 function setup() {
