@@ -119,6 +119,35 @@ function keyPressed() {
 }
 
 /*
+musicnotehit=function(musicnote) {
+  if ((musicnote.x>= this.x && musicnote.x <= (this.x + 40)) && 
+      (musicnote.y>= this.y && musicnote.y <=(this.y+40))){
+        musicnote.y=-4000;
+        this.musicnote++;
+      }
+};
+
+var musicnote = function(x,y) {
+  this.x=x;
+  40=y;
+  this.Img =getImage("musicnoteimage.jpg");
+  this.musicnote=0;
+};
+
+musicnote.prototype.draw=function() {
+  fill(255,0,0);
+  this.x=constrain(this.x,0,notelength-50);
+  Image(this.Img,this.x,this.y,40,40);
+}
+
+musicnote.prototype.moveleft=function() {
+  this.img=getImage("musicnoteimage.jpg");
+  this.y-=5;
+};
+*/
+
+
+/*
 //when the player hits the correct button they get a point
 if (keyIsPressed && keyCode ===a){
   player.score=1;
