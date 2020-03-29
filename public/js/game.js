@@ -40,6 +40,19 @@ function setup() {
     rect(this.x,this.y, 400, 50);
   };
 
+//when the player hits the correct button they get a point
+if (keyIsPressed && keyCode ===a){
+    player.score=1;
+} elif (keyIsPressed && keyCode ===s);{
+    player.score=1;
+}
+  elif (keyIsPressed && keyCode ===d);{
+    player.score=1;
+}
+  elif (keyIsPressed && keyCode ===w);{
+    player.score=1
+};
+
   //the looper's callback is passed the timeFromNow
   //this value should be used as a reference point from
   //which to schedule sounds
@@ -52,6 +65,7 @@ function setup() {
   let player2 = new Player("David Davini", 40);
   let player3 = new Player("DK Shower", 9999);
   
+  //allows players to see their score
   textSize(15);
   text("Score: "+ player1.score, 120, 30);
   text("Score: "+ player2.score, 120, 45);
