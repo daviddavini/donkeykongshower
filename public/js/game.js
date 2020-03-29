@@ -53,4 +53,10 @@ socket.on('log', function(msg){
   // Print log on screen
 })
 
+textsize(15);
+text("Score: "+ player1score, 20, 30);
+text("Score: "+ player2score, 20, 45);
+text("Score: "+ player3score, 20, 60);
+text("Score: "+ player4score, 20, 75);
+
 console.log('hello world!');
