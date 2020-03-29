@@ -95,6 +95,20 @@ function keyPressed() {
     }
   }
 }
+
+//when the player hits the correct button they get a point
+if (keyIsPressed && keyCode ===a){
+  player.score=1;
+} elif (keyIsPressed && keyCode ===s);{
+  player.score=1;
+}
+elif (keyIsPressed && keyCode ===d);{
+  player.score=1;
+}
+elif (keyIsPressed && keyCode ===w);{
+  player.score=1
+};
+
 /*
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
