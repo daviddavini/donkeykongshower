@@ -27,6 +27,19 @@ function setup() {
   textSize(40);
   text('tap to start/stop', windowWidth/2, windowHeight/2);
 
+  //estabilish musical notes bar for the players to see the notes (keys) they need to hit for points 
+  var musicalnotesbar =function(x,y) {
+    this.x=x;
+    this.y=y;
+  };
+
+  //the musical notes bar is being shown on the canvas
+  musicalnotesbar.prototype.draw=function() {
+    fill(28, 27, 24);
+    rectMode(CENTER);
+    rect(this.x,this.y, 400, 50);
+  };
+
   //the looper's callback is passed the timeFromNow
   //this value should be used as a reference point from
   //which to schedule sounds
