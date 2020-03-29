@@ -1,4 +1,4 @@
-import { text } from "express";
+//import { text } from "express";
 
 let synth, soundLoop;
 
@@ -50,14 +50,15 @@ function setup() {
 }
 
 function changeBG() {
-  let val = random(255);
+  let val = color(random(60), random(60), random(60));
   background(val);
   bruh.play();
-  sample_bar.draw();
 }
 
 function draw() {
-  fill(0);
+  fill(255);
+  textSize(40);
+  textAlign(CENTER, CENTER);
   text("Donkey Kong Shower!", windowWidth / 2, windowHeight * 0.15);
   var sample_bar = new musicalnotesbar(100, 100);
   sample_bar.draw();
