@@ -1,5 +1,7 @@
 //import { text } from "express";
 
+//import { text } from "express";
+
 let synth, soundLoop;
 let gameState = 'MENU';
 let notePattern = [
@@ -34,12 +36,15 @@ musicalnotesbar.prototype.draw=function() {
 };
 
 let button;
+let bruh, crash, kick, snare, hihat, metronome;
 
 function preload() {
   bruh = loadSound('../audio/bruh.mp3');
   crash = loadSound('../audio/crash.mp3');
   kick = loadSound('../audio/kick.mp3');
   snare = loadSound('../audio/snare.mp3');
+  hihat = loadSound('../audio/hihat.wav');
+  metronome = loadSound('../audio/metronome-click.mp3');
 }
 
 function setup() {
@@ -49,6 +54,9 @@ function setup() {
   button.position(windowWidth / 2, windowHeight / 2);
   button.center();
   button.mousePressed(changeBG);
+  let beatsPerMinute = 100;
+  let intervalInSeconds = 60 / beatsPerMinute;
+  soundLoop = new p5.SoundLoop(onSoundLoop, intervalInSeconds);
 }
 
 function changeBG() {
@@ -57,6 +65,7 @@ function changeBG() {
   bruh.play();
   gameState = 'ACTUAL_GAME';
   button.hide();
+  soundLoop.start();
 }
 
 function draw() {
@@ -68,9 +77,14 @@ function draw() {
       textSize(40);
       textAlign(CENTER, CENTER);
       text("Donkey Kong Shower!", windowWidth / 2, windowHeight * 0.15);
+      textSize(20);
+      text("Click the image to play.", windowWidth / 2, windowHeight * 0.25);
       break;
     case 'ACTUAL_GAME':
       background(255);
+      fill(0);
+      textSize(16);
+      text("W = Hi-Hat / A = Snare / S = Kick / D = Crash / M = Mute Metronome", windowWidth / 2, 50);
       var sample_bar = new musicalnotesbar(windowWidth / 2, 100);
       sample_bar.draw();
       break;
@@ -81,7 +95,7 @@ function keyPressed() {
   if (gameState === 'ACTUAL_GAME') {
     switch (key) {
       case 'w':
-        bruh.play();
+        hihat.play();
         break;
       case 'a':
         snare.play();
@@ -92,10 +106,19 @@ function keyPressed() {
       case 'd':
         crash.play();
         break;
+      case 'm':
+        if (soundLoop.isPlaying) {
+          soundLoop.stop();
+        } else {
+          // start the loop
+          soundLoop.start();
+        }
+        break;
     }
   }
 }
 
+/*
 //when the player hits the correct button they get a point
 if (keyIsPressed && keyCode ===a){
   player.score=1;
@@ -108,6 +131,7 @@ elif (keyIsPressed && keyCode ===d);{
 elif (keyIsPressed && keyCode ===w);{
   player.score=1
 };
+*/
 
 /*
 function setup() {
@@ -139,7 +163,7 @@ function setup() {
   console.log('hello world!');
 }
 */
-
+/*
 function canvasPressed() {
   // ensure audio is enabled
   userStartAudio();
@@ -151,14 +175,11 @@ function canvasPressed() {
     soundLoop.start();
   }
 }
-
+*/
 
 
 function onSoundLoop(timeFromNow) {
-  let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
-  let note = midiToFreq(notePattern[noteIndex]);
-  synth.play(note, 0.5, timeFromNow);
-  background(noteIndex * 360 / notePattern.length, 50, 100);
+  metronome.play();
 }
 
 
