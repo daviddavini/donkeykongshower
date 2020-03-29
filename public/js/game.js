@@ -1,3 +1,5 @@
+import { text } from "express";
+
 let synth, soundLoop;
 
 let notePattern = [
@@ -55,6 +57,8 @@ function changeBG() {
 }
 
 function draw() {
+  fill(0);
+  text("Donkey Kong Shower!", windowWidth / 2, windowHeight * 0.15);
   var sample_bar = new musicalnotesbar(100, 100);
   sample_bar.draw();
 }
