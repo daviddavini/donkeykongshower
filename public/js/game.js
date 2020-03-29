@@ -1,5 +1,5 @@
 let synth, soundLoop;
-/*
+
 let notePattern = [
 62, 62, 74, 74, 69, 69, 69, 68,
 68, 67, 67, 65, 65, 62, 65, 67,
@@ -9,7 +9,7 @@ let notePattern = [
 68, 67, 67, 65, 65, 62, 65, 67,
 58, 58, 74, 74, 69, 69, 69, 68,
 68, 67, 67, 65, 65, 62, 65, 67];
-*/
+
 
 class Player {
   constructor(name, score) {
@@ -18,6 +18,28 @@ class Player {
   }
 }
 
+let button;
+
+function preload() {
+  bruh = loadSound('../audio/bruh.mp3');
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+  button = createImg('../img/blursed_donkey_kong.jpg');
+  button.size(100, 100);
+  button.position(windowWidth / 2, windowHeight / 2);
+  button.center();
+  button.mousePressed(changeBG);
+}
+
+function changeBG() {
+  let val = random(255);
+  background(val);
+  bruh.play();
+}
+/*
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.mousePressed(canvasPressed);
@@ -46,8 +68,8 @@ function setup() {
   
   console.log('hello world!');
 }
+*/
 
-/*
 function canvasPressed() {
   // ensure audio is enabled
   userStartAudio();
@@ -59,16 +81,16 @@ function canvasPressed() {
     soundLoop.start();
   }
 }
-*/
 
-/*
+
+
 function onSoundLoop(timeFromNow) {
   let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
   let note = midiToFreq(notePattern[noteIndex]);
   synth.play(note, 0.5, timeFromNow);
   background(noteIndex * 360 / notePattern.length, 50, 100);
 }
-*/
+
 
 var socket = io();
 
