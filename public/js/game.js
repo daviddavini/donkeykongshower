@@ -1,4 +1,5 @@
 let synth, soundLoop;
+/*
 let notePattern = [
 62, 62, 74, 74, 69, 69, 69, 68,
 68, 67, 67, 65, 65, 62, 65, 67,
@@ -8,6 +9,14 @@ let notePattern = [
 68, 67, 67, 65, 65, 62, 65, 67,
 58, 58, 74, 74, 69, 69, 69, 68,
 68, 67, 67, 65, 65, 62, 65, 67];
+*/
+
+class Player {
+  constructor(name, score) {
+      this.name = name;
+      this.score = score;
+  }
+}
 
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
@@ -25,8 +34,20 @@ function setup() {
   soundLoop = new p5.SoundLoop(onSoundLoop, intervalInSeconds);
 
   synth = new p5.MonoSynth();
+  
+  let player1 = new Player("Rthan Yam", 20);
+  let player2 = new Player("David Davini", 40);
+  let player3 = new Player("DK Shower", 9999);
+  
+  textSize(15);
+  text("Score: "+ player1.score, 120, 30);
+  text("Score: "+ player2.score, 120, 45);
+  text("Score: "+ player3.score, 120, 60);
+  
+  console.log('hello world!');
 }
 
+/*
 function canvasPressed() {
   // ensure audio is enabled
   userStartAudio();
@@ -38,13 +59,16 @@ function canvasPressed() {
     soundLoop.start();
   }
 }
+*/
 
+/*
 function onSoundLoop(timeFromNow) {
   let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
   let note = midiToFreq(notePattern[noteIndex]);
   synth.play(note, 0.5, timeFromNow);
   background(noteIndex * 360 / notePattern.length, 50, 100);
 }
+*/
 
 var socket = io();
 
@@ -53,10 +77,4 @@ socket.on('log', function(msg){
   // Print log on screen
 })
 
-textsize(15);
-text("Score: "+ player1score, 20, 30);
-text("Score: "+ player2score, 20, 45);
-text("Score: "+ player3score, 20, 60);
-text("Score: "+ player4score, 20, 75);
 
-console.log('hello world!');
