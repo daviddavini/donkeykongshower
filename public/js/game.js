@@ -1,7 +1,7 @@
 //import { text } from "express";
 
 let synth, soundLoop;
-
+let gameState = 'MENU';
 let notePattern = [
 62, 62, 74, 74, 69, 69, 69, 68,
 68, 67, 67, 65, 65, 62, 65, 67,
@@ -37,11 +37,13 @@ let button;
 
 function preload() {
   bruh = loadSound('../audio/bruh.mp3');
+  crash = loadSound('../audio/crash.mp3');
+  kick = loadSound('../audio/kick.mp3');
+  snare = loadSound('../audio/snare.mp3');
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
   button = createImg('../img/blursed_donkey_kong.jpg');
   button.size(100, 100);
   button.position(windowWidth / 2, windowHeight / 2);
@@ -53,15 +55,45 @@ function changeBG() {
   let val = color(random(60), random(60), random(60));
   background(val);
   bruh.play();
+  gameState = 'ACTUAL_GAME';
+  button.hide();
 }
 
 function draw() {
-  fill(255);
-  textSize(40);
-  textAlign(CENTER, CENTER);
-  text("Donkey Kong Shower!", windowWidth / 2, windowHeight * 0.15);
-  var sample_bar = new musicalnotesbar(100, 100);
-  sample_bar.draw();
+  switch (gameState)
+  {
+    case 'MENU':
+      background(30);
+      fill(255);
+      textSize(40);
+      textAlign(CENTER, CENTER);
+      text("Donkey Kong Shower!", windowWidth / 2, windowHeight * 0.15);
+      break;
+    case 'ACTUAL_GAME':
+      background(255);
+      var sample_bar = new musicalnotesbar(windowWidth / 2, 100);
+      sample_bar.draw();
+      break;
+  }
+}
+
+function keyPressed() {
+  if (gameState === 'ACTUAL_GAME') {
+    switch (key) {
+      case 'w':
+        bruh.play();
+        break;
+      case 'a':
+        snare.play();
+        break;
+      case 's':
+        kick.play();
+        break;
+      case 'd':
+        crash.play();
+        break;
+    }
+  }
 }
 /*
 function setup() {
